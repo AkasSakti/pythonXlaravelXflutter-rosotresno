@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/response.dart';
 import '../services/api_service.dart';
 import 'response_form.dart';
+import 'PredictionChartScreen.dart'; // Import halaman chart
 
 class ResponseList extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _ResponseListState extends State<ResponseList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Responses')),
+      appBar: AppBar(title: Text('Responses-Roso Tresno')),
       body: FutureBuilder<List<ResponseModel>>(
         future: futureResponses,
         builder: (context, snapshot) {
@@ -76,16 +77,33 @@ class _ResponseListState extends State<ResponseList> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ResponseForm(onSaved: refreshData),
-            ),
-          );
-        },
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: "btnChart",
+            child: Icon(Icons.bar_chart),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PredictionChartScreen()),
+              );
+            },
+          ),
+          SizedBox(height: 10), // Jarak antara tombol
+          FloatingActionButton(
+            heroTag: "btnAdd",
+            child: Icon(Icons.add),
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResponseForm(onSaved: refreshData),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/response_model.dart';
+import '../models/response.dart';
 import '../services/api_service.dart';
 
 class ResponseListScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class _ResponseListScreenState extends State<ResponseListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Responses')),
+      appBar: AppBar(title: Text('Responses-Roso Tresno')),
       body: FutureBuilder<List<ResponseModel>>(
         future: _futureResponses,
         builder: (context, snapshot) {
